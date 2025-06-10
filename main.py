@@ -4,7 +4,6 @@ import yfinance as yf
 
 app = FastAPI()
 
-# CORS for frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -12,6 +11,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+def root():
+    return {"message": "NSE Screener API is running. Use /screener to access data."}
 
 @app.get("/screener")
 def run_screener():
